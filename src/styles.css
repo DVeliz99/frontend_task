@@ -4,3 +4,8 @@
 :root {
     --primary-blue-00: #01426A;
 }
+
+/*font-family for all project*/
+* {
+    font-family: 'Poppins', sans-serif;
+}

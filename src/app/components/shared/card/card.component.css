@@ -1,0 +1,36 @@
+#add-file {
+    display: none;
+    visibility: none;
+}
+
+.div-img {
+    height: 200px;
+    width: 200px;
+    border: 8px solid white;
+}
+
+.text-color {
+    color: var(--primary-blue-00);
+}
+
+.size-sm {
+    font-size: x-small;
+}
+
+.size-md {
+    font-size: small;
+}
+
+.fa-trash {
+    color: red;
+}
+
+.trainer-card {
+    background-color: #FFC600;
+
+}
+
+.div-add-file {
+    background-color: white;
+    border: 2px dashed gray;
+}
