@@ -1,15 +1,15 @@
-<div class="row ">
+<div class="row full-height">
 
     <!-- Left box-->
-    <div class="col-12 col-sm-6 d-flex flex-column mt-5 float-start">
+    <div class="col-12 col-md-6 d-flex flex-column mt-5 float-start ">
 
-        <div class="ps-4">
+        <div class="ps-4 d-none">
             <div class="d-flex ">
                 <div class="d-flex justify-content-center col col-2">
                     <i class="fa-solid fa-arrow-left text-color"></i>
                 </div>
                 <div class="col col-10">
-                    <h5 class="text-color ">¡Hola! Configuremos tu perfil</h5>
+                    <h6 class="text-color ">¡Hola! Configuremos tu perfil</h6>
                 </div>
 
             </div>
@@ -20,7 +20,31 @@
 
                 </div>
                 <div class="col col-10">
-                    <p class="text-muted small ">Queremos conocerte mejor.</p>
+                    <p class="text-muted text-size-xsm ">Queremos conocerte mejor.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ps-4 mb-4">
+            <div class="d-flex ">
+                <div class="d-flex justify-content-center col col-2">
+                    <i class="fa-solid fa-arrow-left text-color"></i>
+                </div>
+                <div class="col col-10">
+                    <h6 class="text-color ">¡Ya casi términamos!</h6>
+                </div>
+
+            </div>
+
+            <div class="d-flex">
+
+                <div class="col col-2">
+
+                </div>
+                <div class="col col-10">
+                    <p class="text-muted text-size-xsm">Revisa la información, y completa lo solicitado.</p>
                 </div>
 
             </div>
@@ -29,15 +53,18 @@
 
 
 
-        <app-card>
 
-        </app-card>
+        <app-card> </app-card>
+
+
+
+
 
     </div>
     <!-- right box-->
-    <div class="col-12 col-sm-6 mt-5 float-start">
+    <div class="col-12 col-md-6 mt-5 float-start ">
 
-        <div class="ps-4">
+        <div class="mt-5 ms-4">
             <div class="d-flex ">
 
                 <div class="col col-10">
@@ -57,7 +84,48 @@
 
         </div>
 
-        <app-form></app-form>
+        <div class="">
+
+            <app-form></app-form>
+        </div>
+
+        <!-- Select pokemons-->
+
+        <div class="p-5
+        d-none">
+            <div class="d-flex ">
+
+                <div class="col col-10">
+                    <h6 class="text-color ">Pokémon</h6>
+                </div>
+
+            </div>
+
+            <div class="d-flex">
+
+
+                <div class="col col-10">
+                    <p class="text-muted text-size-xsm">Selecciona 3 Pokémon para que sean parte de tu equipo.</p>
+                </div>
+
+            </div>
+
+            <div class="d-flex">
+                <form class="d-flex w-100" role="search">
+                    <input class="form-control form-control-sm me-2 bg-light small" type="search"
+                        placeholder=" Buscar por índice, nombre..." aria-label="Search" />
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="px-5 d-none">
+            <app-list></app-list>
+        </div>
     </div>
 
 </div>

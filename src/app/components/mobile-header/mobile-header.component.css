@@ -11,10 +11,9 @@
 }
 
 
-
-
-@media (max-width: 798px) {
-    .navbar {
+@media (min-width:798px) {
+    .mobile-navbar {
         display: none !important;
     }
+
 }

@@ -1,13 +1,38 @@
-<div class="col col-6 trainer-card  px-4 py-5 rounded-5 m-auto">
+<div class="col col-6 trainer-card  px-4 py-4 rounded-5 m-auto">
 
-    <p class="user-name text-center"> Jose Luis</p>
-    <div class="d-flex justify-content-center mb-3">
+
+    <!-- Registration completed-->
+
+    <div class="d-flex justify-content-between  mb-2 d-none">
+        <!-- title -->
+        <div>
+            Entrenador
+        </div>
+
+        <!-- badge-->
+        <div>
+
+            <img src="assets/badge.png" alt="badge.png" height="30">
+
+        </div>
+    </div>
+
+    <!-- no registration completed-->
+    <div class="">
+        <p class="user-name text-center"> Jose Luis</p>
+    </div>
+
+
+    <div class="d-flex justify-content-center mb-5">
         <div class="div-img d-flex justify-content-center align-items-center  rounded-circle overflow-hidden"
             style="width: 120px; height: 120px;">
-            <img src="assets/no_profile.webp" alt="Foto de perfil" class="w-100 h-100" style="object-fit: cover;">
+            <img [src]="profileImageUrl" alt="profile_picture" class="w-100 h-100" style="object-fit: cover;">
         </div>
 
     </div>
+
+
+
 
 
 
@@ -61,17 +86,17 @@
 
             <div>
                 <label for="add-file" class="size-sm text-color">Adjunta una foto</label>
-                <input type="file" id="add-file">
+                <input type="file" id="add-file" (change)="onImageSelected($event)">
             </div>
 
 
             <!--  end of input-->
 
-            <div class="d-none">
+            <div *ngIf="profileImageUrl!='assets/no_profile.webp'" class="" (click)="resetProfileImage()">
                 <i class="fa-solid fa-trash  size-sm"></i>
             </div>
 
-            <div class="">
+            <div class="" *ngIf="profileImageUrl=='assets/no_profile.webp'">
                 <i class="fa-solid fa-cloud-arrow-up  size-sm"></i>
             </div>
         </div>

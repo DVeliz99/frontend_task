@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { differenceInYears } from 'date-fns';
+import { TrainerProfile } from '../../../models/trainerProfile.model';
+import { TrainerService } from '../../../services/trainer.service';
 
 @Component({
   selector: 'app-form',
@@ -10,6 +12,9 @@ import { differenceInYears } from 'date-fns';
   styleUrl: './form.component.css'
 })
 export class FormComponent {
+
+
+
 
   form: FormGroup;
   hobbies = [
@@ -30,7 +35,7 @@ export class FormComponent {
 
   selectedHobby: string | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private trainerService: TrainerService) {
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       cumpleaños: ['', Validators.required],
@@ -104,6 +109,22 @@ export class FormComponent {
             : this.form.value.carnet,
         pasatiempo: this.form.value.pasatiempo,
       };
+
+      const partialUpdate: Partial<TrainerProfile> = {
+        name: result.nombre,
+        hobbie: result.pasatiempo,
+        birthday: result.cumpleaños,
+        isAdult: this.age !== null && this.age >= 18
+      };
+
+      if (this.age != null && this.age >= 18) {
+        partialUpdate.dui = result.documento;
+      } else if (this.age != null && this.age < 18) {
+        partialUpdate.minor_id_card = result.documento;
+
+      }
+      //send partial infor to observable
+      this.trainerService.updatePartial(partialUpdate);
       console.log('Formulario válido:', result);
     } else {
       this.form.markAllAsTouched();

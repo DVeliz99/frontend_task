@@ -10,3 +10,23 @@
 * {
     font-family: 'Poppins', sans-serif;
 }
+
+.full-height {
+    min-height: 100vh;
+}
+
+.btn-muted {
+    background-color: var(--muted-color);
+    color: #444;
+    border: none;
+}
+
+.btn-muted:hover {
+    background-color: #01426A;
+    color: white;
+    font-weight: bold;
+}
+
+.text-size-xsm {
+    font-size: x-small;
+}

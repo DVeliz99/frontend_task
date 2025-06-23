@@ -1,0 +1,11 @@
+.text-color {
+    color: var(--primary-blue-00);
+}
+
+.div-border {
+    border: 2px solid var(--primary-blue-00);
+}
+
+.shadow-bottom {
+    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1);
+}
