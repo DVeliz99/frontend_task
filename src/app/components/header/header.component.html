@@ -5,7 +5,7 @@
             <div class="d-flex me-5 div-border rounded justify-items-center py-1 px-4" type="button">
                 <div class="d-flex px-2">
                     <div class="me-2">
-                        <h6 class="text-color">Jose</h6>
+                        <h6 class="text-color" *ngIf="validateProfileInfofields()">{{trainerProfile?.name}}</h6>
                     </div>
                     <div>
                         <strong><i class="fa-solid fa-arrow-down text-color"></i></strong>

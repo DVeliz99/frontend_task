@@ -4,16 +4,12 @@ import { HomeComponent } from './components/home/home.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LoadingComponent } from './components/loading/loading.component';
 
-const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' }, // Ruta por defecto
+export const routes: Routes = [
+    { path: '', redirectTo: 'settings', pathMatch: 'full' }, // Default route
     { path: 'home', component: HomeComponent },
     { path: 'settings', component: SettingsComponent },
     { path: 'loading', component: LoadingComponent },
-    { path: '**', redirectTo: 'home' } // Ruta comodín para redireccionar
+    { path: '**', redirectTo: 'settings' } //  Wildcard fallback
 ];
 
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
-})
-export class AppRoutingModule { }
+

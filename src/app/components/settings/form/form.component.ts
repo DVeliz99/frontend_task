@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { differenceInYears } from 'date-fns';
 import { TrainerProfile } from '../../../models/trainerProfile.model';
@@ -35,7 +36,7 @@ export class FormComponent {
 
   selectedHobby: string | null = null;
 
-  constructor(private fb: FormBuilder, private trainerService: TrainerService) {
+  constructor(private fb: FormBuilder, private trainerService: TrainerService, private router: Router) {
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       cumpleaños: ['', Validators.required],
@@ -125,6 +126,7 @@ export class FormComponent {
       }
       //send partial infor to observable
       this.trainerService.updatePartial(partialUpdate);
+      this.router.navigate(['/loading']);
       console.log('Formulario válido:', result);
     } else {
       this.form.markAllAsTouched();

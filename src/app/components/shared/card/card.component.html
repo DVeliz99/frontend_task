@@ -3,7 +3,7 @@
 
     <!-- Registration completed-->
 
-    <div class="d-flex justify-content-between  mb-2 d-none">
+    <div class="d-flex justify-content-between  mb-2 " *ngIf="validateProfileInfofields()">
         <!-- title -->
         <div>
             Entrenador
@@ -18,8 +18,8 @@
     </div>
 
     <!-- no registration completed-->
-    <div class="">
-        <p class="user-name text-center"> Jose Luis</p>
+    <div class="" *ngIf="validateProfileInfofields()">
+        <p class="user-name text-center"> {{trainerProfile?.name}}</p>
     </div>
 
 
@@ -36,35 +36,34 @@
 
 
 
-    <div class="m-0 p-0 d-none">
-        <div class="d-flex justify-content-between m-0 p-0">
+    <div class="m-0 p-0" *ngIf="validateProfileInfofields()">
+        <div class="d-flex m-0 p-0 justify-content-between">
             <strong>
-                <p class="size-md">
+                <p class="text-size-xsm ">
                     Pasatiempo:
                 </p>
             </strong>
 
-            <p class="size-md">
-                Ver series
+            <p class="text-size-xsm">
+                {{this.trainerProfile?.hobbie}}
 
             </p>
         </div>
 
         <div class="d-flex justify-content-between">
             <strong>
-                <p class="size-md">
+                <p class="text-size-xsm">
                     Edad:
                 </p>
             </strong>
 
-            <p class="size-md">
-                18
-
+            <p class="text-size-xsm">
+                {{age}}
             </p>
         </div>
 
 
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between" *ngIf="age !== null && age >= 18">
             <strong>
                 <p class="size-md">
                     DUI:
@@ -72,14 +71,14 @@
             </strong>
 
             <p class="size-md">
-                05643215-9
+                {{trainerProfile?.dui}}
 
             </p>
         </div>
 
     </div>
 
-    <div class="d-flex div-add-file rounded px-2 py-1 ">
+    <div class="d-flex div-add-file rounded px-2 py-1 " *ngIf="!validateProfileInfofields()">
         <div class="d-flex  col col-12 justify-content-between">
 
             <!-- Input-->

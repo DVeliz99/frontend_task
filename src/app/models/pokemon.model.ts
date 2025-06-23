@@ -1,7 +1,7 @@
 export interface Pokemon {
     name: string;
     type: string;
-    image: string; // URL or Base64
+    image: string;
     stats: PokemonStats;
 }
 
