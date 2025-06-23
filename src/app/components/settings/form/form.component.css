@@ -1,0 +1,17 @@
+.btn-muted {
+    background-color: var(--muted-color);
+    color: #000;
+    border: none;
+}
+
+.list-group-item:hover {
+    background-color: #E7EFF5;
+}
+
+.selected-option {
+    background-color: var(--muted-color);
+}
+
+.text-option {
+    color: #185A7D;
+}

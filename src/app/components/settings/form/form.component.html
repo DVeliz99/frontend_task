@@ -1,1 +1,85 @@
-<p>form works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()" class="p-4">
+
+    <!-- Name -->
+    <div class="form-floating mb-3">
+        <input type="text" id="nombre" class="form-control" placeholder="Nombre" formControlName="nombre" />
+        <label for="nombre">Nombre *</label>
+    </div>
+    <div *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid" class="text-danger ms-1">
+        Este campo es requerido.
+    </div>
+
+
+    <!-- Favorite hobbie -->
+    <div class="form-floating mb-3 position-relative">
+
+
+        <!-- Internal badge entry simulation-->
+        <div class="form-control d-flex align-items-center gap-2 flex-wrap"
+            (click)="!selectedHobby && (showHobbyMenu = !showHobbyMenu)" style="cursor: pointer; min-height: 40px;">
+            <!-- no hobbie -->
+
+
+            <!-- if hobbie , show "tag" with X button -->
+            <span *ngIf="selectedHobby" class="badge selected-option d-inline-flex align-items-center">
+                {{ selectedHobby }}
+                <button type="button" class="btn btn-sm ms-2 p-0 border-0"
+                    (click)="clearHobby(); $event.stopPropagation()">
+                    <strong><i class="fa-regular fa-circle-xmark"></i></strong>
+                </button>
+            </span>
+        </div>
+
+        <!-- Menu -->
+        <ul *ngIf="showHobbyMenu && !selectedHobby" class="list-group position-absolute z-3 w-100 mt-1"
+            style="max-height: 200px; overflow-y: auto;">
+            <li *ngFor="let h of hobbies" class="list-group-item text-option list-group-item-action"
+                (click)="selectHobby(h)">
+                {{ h }}
+            </li>
+        </ul>
+
+        <!-- Hidden field to show value -->
+        <input type="hidden" id="favorite-hobbie" placeholder="pasatiempo favorito" formControlName="pasatiempo" />
+        <label class="form-label" for="favorite-hobbie">Pasatiempo Favorito</label>
+    </div>
+
+    <!-- Birthday -->
+    <div class="form-floating mb-3">
+
+        <input type="date" id="cumpleaños" formControlName="cumpleaños" placeholder="cumpleaños" class="form-control" />
+        <label for="cumpleaños" class="form-label">Cumpleaños *</label>
+        <div *ngIf="form.get('cumpleaños')?.touched && form.get('cumpleaños')?.invalid" class="text-danger">
+            Este campo es requerido.
+        </div>
+    </div>
+
+    <!-- DUI -->
+    <div class="mb-3 form-floating" *ngIf="age !== null && age >= 18">
+
+        <input type="text" id="dui" formControlName="dui" class="form-control" placeholder="########-#" />
+        <label for="dui" class="form-label">DUI *</label>
+        <div *ngIf="form.get('dui')?.touched && form.get('dui')?.invalid" class="text-danger">
+            DUI inválido.
+        </div>
+    </div>
+
+    <!-- minors's id card-->
+    <div class="mb-3 form-floating" *ngIf="age !== null && age < 18">
+
+        <input type="text" id="minor" formControlName="carnet" class="form-control" placeholder="C-######" />
+        <label for="carnet" for="minor" class="form-label">Carnet de minoridad *</label>
+        <div *ngIf="form.get('carnet')?.touched && form.get('carnet')?.invalid" class="text-danger">
+            Carnet inválido.
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Submit -->
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-muted  mt-3">Continuar</button>
+    </div>
+</form>
