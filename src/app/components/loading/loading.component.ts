@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-loading',
@@ -8,22 +8,27 @@ import { Router } from '@angular/router';
   styleUrl: './loading.component.css'
 })
 export class LoadingComponent implements OnInit, OnChanges {
+  redirectTo: string = '/settings'; //default value
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
 
   }
 
 
   //To make sure that data is saved
   ngOnInit(): void {
-    setTimeout(() => {
-      this.router.navigate(['/settings']);
-    }, 4000); // 3 seconds
+    this.route.queryParams.subscribe(params => {
+      this.redirectTo = params['redirectTo'] || '/settings';
+
+      setTimeout(() => {
+        this.router.navigate(['/' + this.redirectTo]);
+      }, 4000);
+    });
   }
+
+
   ngOnChanges(changes: SimpleChanges): void {
-    setTimeout(() => {
-      this.router.navigate(['/settings']);
-    }, 4000); // 3 seconds
+
 
   }
 

@@ -1,0 +1,29 @@
+<cdk-virtual-scroll-viewport itemSize="200" class="viewport">
+
+    <div class="row pokemon-card d-flex row mx-2 d-flex mb-4 p-3" *cdkVirtualFor="let p of pokemons">
+        <!-- Pokemon -->
+        <div class="text-center  col col-4 px-2">
+            <img [src]="p.image" [alt]="p.name" class="pokemon-img mb-2" />
+            <div class="fw-bold mb-0 small">{{ p.name }}</div>
+            <p class="mb-0 text-muted">{{ p.type | titlecase }}</p>
+        </div>
+
+        <!-- Stats and percentage-->
+
+
+        <div class="d-flex flex-column col-8  justify-content-center ">
+            <div *ngFor="let stat of getStatEntries(p.stats)" class="d-flex align-items-center mb-2">
+
+                <div class="stat-label">
+                    {{ statLabels[stat.key] }}
+                </div>
+                <div class="stat-bar flex-grow-1 rounded">
+                    <div class="stat-fill rounded" [style.width.%]="stat.value" [style.background]="getColor(p.type)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</cdk-virtual-scroll-viewport>

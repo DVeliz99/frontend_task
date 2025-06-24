@@ -6,6 +6,7 @@ import { TrainerProfile } from '../../../models/trainerProfile.model';
 import { TrainerService } from '../../../services/trainer.service';
 import { Subscription } from 'rxjs';
 import { PokemonCard } from '../../../models/pokemonCard.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-selection',
@@ -25,7 +26,7 @@ export class SelectionComponent {
 
 
 
-  constructor(private http: HttpClient, private trainerService: TrainerService) { }
+  constructor(private http: HttpClient, private trainerService: TrainerService, private router: Router) { }
 
   ngOnInit(): void {
     this.idsPrimeraGeneracion.forEach(id => {
@@ -89,6 +90,11 @@ export class SelectionComponent {
 
       this.trainerService.updatePartial(partialUpdate);
       console.log('Pokémon enviados al perfil:', pokemonsForProfile);
+
+      this.router.navigate(['/loading'], {
+        queryParams: { redirectTo: 'home' }
+      });
+
     }
   }
 

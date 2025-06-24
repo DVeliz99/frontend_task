@@ -3,12 +3,12 @@
         (click)="togglePokemon(pokemon)">
 
         <div class="pokemon-image-container">
-            <img [src]="pokemon.image" alt="{{ pokemon.name }}" height="60" />
+            <img [src]="pokemon.image" alt="{{ pokemon.name }}" height="80" />
         </div>
 
-        <div class="pokemon-label d-flex flex-column align-items-center mt-1">
-            <span class="number text-size-xsm">#{{ pokemon.number | number:'3.0' }}</span>
-            <span class="name text-size-xsm">{{ pokemon.name }}</span>
+        <div class="pokemon-label d-flex justify-content-center  align-items-center mt-3 rounded p-1 gap-2">
+            <span class="number text-size-xsm text-center">#{{ pokemon.number | number:'3.0' }}</span>
+            <span class="name text-size-xsm text-center">{{ pokemon.name }}</span>
         </div>
 
 
