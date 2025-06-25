@@ -31,6 +31,9 @@ export class HomeComponent {
       console.log('Perfil received on settings component:', profile);
 
     });
+
+    this.editModeService.disableEditMode();
+    this.editModeService.disableEditModePokemon();
   }
 
   validateProfileInfofields(): boolean {
