@@ -3,6 +3,7 @@ import { TrainerProfile } from '../../models/trainerProfile.model';
 import { TrainerService } from '../../services/trainer.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mobile-header',
@@ -15,7 +16,7 @@ export class MobileHeaderComponent {
   trainerProfile: TrainerProfile | null = null;
   private profileSubscription!: Subscription;
 
-  constructor(private trainerService: TrainerService) {
+  constructor(private trainerService: TrainerService, private router: Router) {
 
   }
   ngOnInit(): void {
@@ -44,4 +45,9 @@ export class MobileHeaderComponent {
     );
   }
 
+  goToHome() {
+    if (this.validateProfileInfofields()) {
+      this.router.navigate(['/home']);
+    }
+  }
 }

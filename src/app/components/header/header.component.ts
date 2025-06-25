@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { TrainerProfile } from '../../models/trainerProfile.model';
 import { TrainerService } from '../../services/trainer.service';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   trainerProfile: TrainerProfile | null = null;
   private profileSubscription!: Subscription;
 
-  constructor(private trainerService: TrainerService) {
+  constructor(private trainerService: TrainerService, private router: Router) {
 
   }
   ngOnInit(): void {
@@ -43,6 +43,14 @@ export class HeaderComponent implements OnInit {
       (p.dui !== '' || p.minor_id_card !== '')
     );
   }
+
+  goToHome() {
+    if (this.validateProfileInfofields()) {
+      this.router.navigate(['/home']);
+    }
+  }
+
+
 
 
 }
