@@ -1,59 +1,65 @@
-# FrontendTask
+# 🧢 Pokémon Trainer App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
+Una aplicación web desarrollada con Angular que te permite convertirte en entrenador Pokémon. Puedes crear tu perfil, seleccionar tu equipo con la primera generación de Pokémon desde la [PokeAPI](https://pokeapi.co/), visualizar tus estadísticas y editar tu información en cualquier momento.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Funcionalidades Principales
+
+### 🎮 1. Configura tu Perfil de Entrenador
+
+- Carga de foto (**requerido**)
+- Ingreso de nombre (**requerido**)
+- Selección de pasatiempo
+- Fecha de nacimiento (**requerido**)
+- Identificación:
+  - DUI con validación de formato y autocompletado de guión (si es mayor de edad)
+  - Carnet de minoridad (opcional si es menor)
+
+> Los campos con asterisco son requeridos según la condición del usuario.
+
+---
+
+### 2. Selección de Pokémon
+
+- Consulta y visualiza los Pokémon de la primera generación desde la PokeAPI.
+- Filtra por **nombre** o **ID**.
+- Selecciona **tres** Pokémon para formar tu equipo.
+
+---
+
+### 3. Perfil del Entrenador
+
+- Muestra:
+  - Foto de perfil
+  - Nombre, edad y pasatiempo
+  - DUI o carnet de minoridad (si está presente)
+- Muestra equipo Pokémon:
+  - Sprite
+  - Nombre
+  - Tipo
+  - Barra de stats con colores según tipo
+
+> Los stats se escalan con máximos definidos:
+>
+> - Salud (255), Ataque (190), Defensa (230)
+> - Ataque Especial (194), Defensa Especial (230), Velocidad (180)
+
+---
+
+### Edición
+
+- Editar Perfil: modifica nombre, fecha, documento y pasatiempo.
+- Editar Pokémon: permite seleccionar nuevos Pokémon para el equipo.
+
+---
+
+---
+
+## Docker
+
+### Construir imagen de producción
 
 ```bash
-ng serve
+docker build -t pokemon-trainer-app .
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
