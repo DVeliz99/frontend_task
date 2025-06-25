@@ -7,6 +7,7 @@ import { TrainerService } from '../../../services/trainer.service';
 import { Subscription } from 'rxjs';
 import { PokemonCard } from '../../../models/pokemonCard.model';
 import { Router } from '@angular/router';
+import { SearchService } from '../../../services/search.service';
 
 @Component({
   selector: 'app-selection',
@@ -18,6 +19,7 @@ export class SelectionComponent {
 
 
   pokemons: PokemonCard[] = [];
+  allPokemons: PokemonCard[] = [];
   selectedPokemons: PokemonCard[] = [];
   idsPrimeraGeneracion = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // Bulbasaur → Blastoise
 
@@ -26,7 +28,7 @@ export class SelectionComponent {
 
 
 
-  constructor(private http: HttpClient, private trainerService: TrainerService, private router: Router) { }
+  constructor(private searchService: SearchService, private http: HttpClient, private trainerService: TrainerService, private router: Router) { }
 
   ngOnInit(): void {
     this.idsPrimeraGeneracion.forEach(id => {
@@ -46,9 +48,17 @@ export class SelectionComponent {
           }
         };
 
-        this.pokemons.push(pokemon);
+
+        this.allPokemons.push(pokemon);
+        this.pokemons = [...this.allPokemons];
       });
     });
+
+
+    this.searchService.searchTerm$.subscribe(term => {
+      this.pokemons = this.filterPokemons(term);
+    });
+
   }
 
 
@@ -64,6 +74,16 @@ export class SelectionComponent {
       }
     }
   }
+
+  filterPokemons(term: string): PokemonCard[] {
+    if (!term) return this.allPokemons;
+
+    return this.allPokemons.filter(p =>
+      p.name.toLowerCase().includes(term.toLowerCase()) ||
+      p.number.toString().includes(term)
+    );
+  }
+
 
 
 

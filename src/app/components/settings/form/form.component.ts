@@ -15,7 +15,8 @@ import { Subscription } from 'rxjs';
 })
 export class FormComponent {
 
-
+  trainerProfile: TrainerProfile | null = null;
+  private profileSubscription!: Subscription;
 
 
   form: FormGroup;
@@ -53,6 +54,33 @@ export class FormComponent {
 
   }
 
+  ngOnInit(): void {
+    this.profileSubscription = this.trainerService.trainerProfile$.subscribe(profile => {
+      this.trainerProfile = profile;
+      console.log('Perfil received on form component:', profile);
+
+      if (this.validateProfileInfofields()) {
+        if (profile?.birthday) {
+          this.age = this.calculateAge(profile.birthday);
+          this.toggleDocumentValidators();
+        }
+
+        this.form.patchValue({
+          nombre: profile?.name,
+          cumpleaños: profile?.birthday,
+          dui: profile?.dui,
+          carnet: profile?.minor_id_card,
+          pasatiempo: profile?.hobbie
+        });
+
+        this.selectedHobby = profile?.hobbie ?? null;
+      }
+
+
+    });
+  }
+
+
   calculateAge(fecha: string): number {
     const birth = new Date(fecha);
     return differenceInYears(new Date(), birth);
@@ -77,7 +105,7 @@ export class FormComponent {
     if (this.age !== null && this.age >= 18) {
       duiCtrl?.setValidators([Validators.required, Validators.pattern(/^\d{8}-\d$/)]);
     } else {
-      carnetCtrl?.setValidators([Validators.required, Validators.pattern(/^C-\d{6}$/)]);
+      carnetCtrl?.setValidators([Validators.pattern(/^C-\d{6}$/)]);
     }
 
     duiCtrl?.updateValueAndValidity();
@@ -98,6 +126,17 @@ export class FormComponent {
   clearHobby(): void {
     this.selectedHobby = null;
     this.form.get('pasatiempo')?.setValue('');
+  }
+
+  validateProfileInfofields(): boolean {
+    const p = this.trainerProfile;
+    return (
+      !!p &&
+      p.birthday !== '' &&
+      p.name !== '' &&
+      p.hobbie !== '' &&
+      (p.dui !== '' || p.minor_id_card !== '')
+    );
   }
 
   submit(): void {

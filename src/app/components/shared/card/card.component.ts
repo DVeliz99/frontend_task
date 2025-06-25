@@ -4,6 +4,7 @@ import { TrainerService } from '../../../services/trainer.service';
 import { TrainerProfile } from '../../../models/trainerProfile.model';
 import { Subscription } from 'rxjs';
 import { differenceInYears } from 'date-fns';
+import { EditModeService } from '../../../services/edit-mode.service';
 
 @Component({
   selector: 'app-card',
@@ -16,12 +17,18 @@ export class CardComponent implements OnInit {
   private profileSubscription!: Subscription;
   profileImageUrl: string = 'assets/no_profile.webp';
   age!: number | null;
+  editMode = false;
 
-  constructor(private trainerService: TrainerService) {
+  constructor(private trainerService: TrainerService, private editModeService: EditModeService) {
 
   }
 
   ngOnInit(): void {
+
+    this.editModeService.editMode$.subscribe(isEditing => {
+      this.editMode = isEditing;
+      console.log('¿Edit mode active?', this.editMode);
+    });
     this.profileSubscription = this.trainerService.trainerProfile$.subscribe(profile => {
       this.trainerProfile = profile;
       console.log('Perfil received on card component:', profile);

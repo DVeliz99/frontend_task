@@ -68,7 +68,7 @@
     <div class="mb-3 form-floating" *ngIf="age !== null && age < 18">
 
         <input type="text" id="minor" formControlName="carnet" class="form-control" placeholder="C-######" />
-        <label for="carnet" for="minor" class="form-label">Carnet de minoridad *</label>
+        <label for="carnet" for="minor" class="form-label">Carnet de minoridad </label>
         <div *ngIf="form.get('carnet')?.touched && form.get('carnet')?.invalid" class="text-danger">
             Carnet inválido.
         </div>

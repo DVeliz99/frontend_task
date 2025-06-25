@@ -35,7 +35,7 @@
 
 
             <!-- almost there-->
-            <div *ngIf="validateProfileInfofields()">
+            <div *ngIf="validateProfileInfofields() && !editMode">
                 <!-- if profileTrainer has data -->
                 <div class="ps-4 mb-4">
                     <div class="d-flex ">
@@ -83,7 +83,7 @@
     <!-- right box-->
     <div class="col-12 col-md-6 mt-5 float-start ">
 
-        <div *ngIf="!validateProfileInfofields()">
+        <div *ngIf="!validateProfileInfofields() || editMode">
             <div class="mt-5 ms-4">
                 <div class="d-flex ">
 
@@ -112,7 +112,7 @@
 
         <!-- Select pokemons-->
 
-        <div *ngIf="validateProfileInfofields()">
+        <div *ngIf="validateProfileInfofields() && !editMode || editModePokemon">
             <div class="mb-5
         ">
                 <div class="d-flex ">
@@ -134,8 +134,9 @@
 
                 <div class="d-flex">
                     <form class="d-flex w-100" role="search">
-                        <input class="form-control form-control-sm me-2 bg-light small" type="search"
-                            placeholder=" Buscar por índice, nombre..." aria-label="Search" />
+                        <input #searchBox class="form-control form-control-sm me-2 bg-light small" type="search"
+                            placeholder=" Buscar por índice, nombre..." aria-label="Search"
+                            (input)="onSearchChange(searchBox.value)" />
 
                     </form>
 
@@ -146,7 +147,7 @@
         </div>
 
 
-        <div class="px-5 " *ngIf="validateProfileInfofields()">
+        <div class="px-5 " *ngIf="validateProfileInfofields() && !editMode ||editModePokemon">
             <app-selection></app-selection>
         </div>
     </div>

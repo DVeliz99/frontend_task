@@ -7,7 +7,8 @@ import { TrainerProfile } from '../../models/trainerProfile.model';
 import { TrainerService } from '../../services/trainer.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { EditModeService } from '../../services/edit-mode.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class HomeComponent {
   trainerProfile: TrainerProfile | null = null;
   private profileSubscription!: Subscription;
 
-  constructor(private trainerService: TrainerService) {
+  constructor(private trainerService: TrainerService, private router: Router, private editModeService: EditModeService) {
 
   }
 
@@ -41,6 +42,16 @@ export class HomeComponent {
       p.hobbie !== '' &&
       (p.dui !== '' || p.minor_id_card !== '')
     );
+  }
+
+  goToEdit() {
+    this.editModeService.enableEditMode();
+    this.router.navigate(['/settings']);
+  }
+
+  goToEditPokemon() {
+    this.editModeService.enableEditModePokemon();
+    this.router.navigate(['/settings']);
   }
 
 
