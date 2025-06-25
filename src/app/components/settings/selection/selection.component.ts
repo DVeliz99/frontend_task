@@ -76,11 +76,19 @@ export class SelectionComponent {
   }
 
   filterPokemons(term: string): PokemonCard[] {
-    if (!term) return this.allPokemons;
+    const value = term.trim().toLowerCase();
+
+    if (!value) return this.allPokemons;
+
+    const isNumeric = /^\d+$/.test(value);
+
+    if (isNumeric) {
+      const id = parseInt(value, 10);
+      return this.allPokemons.filter(p => p.number === id);
+    }
 
     return this.allPokemons.filter(p =>
-      p.name.toLowerCase().includes(term.toLowerCase()) ||
-      p.number.toString().includes(term)
+      p.name.toLowerCase().includes(value)
     );
   }
 
