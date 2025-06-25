@@ -112,7 +112,7 @@
 
         <!-- Select pokemons-->
 
-        <div *ngIf="validateProfileInfofields() && !editMode || editModePokemon">
+        <div *ngIf="(validateProfileInfofields() && !editMode) || (validateProfileInfofields() && !editModePokemon)">
             <div class="mb-5
         ">
                 <div class="d-flex ">
@@ -147,7 +147,8 @@
         </div>
 
 
-        <div class="px-5 " *ngIf="validateProfileInfofields() && !editMode ||editModePokemon">
+        <div class="px-5 "
+            *ngIf="(validateProfileInfofields() && !editMode) || (validateProfileInfofields() && !editModePokemon)">
             <app-selection></app-selection>
         </div>
     </div>
